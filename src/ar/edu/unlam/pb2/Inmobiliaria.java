@@ -167,6 +167,23 @@ public class Inmobiliaria {
 	    return null; // Devuelve null si no se encuentra ninguna casa con el código especificado
 	}
 	
+	//Buscar depto por codigo
+	public Departamento buscarDepartamentoPorCodigo(String codigo) {
+		for (Departamento departamento : departamentos) {
+	        if (departamento.getCodigo().equals(codigo)) {
+	            return departamento; // Devuelve la casa si se encuentra el código
+	        }
+	    }
+		return null;
+	}
+	
+	//Buscar ph por codigo
+	public PH buscarPHPorCodigo(String codigo3) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 	//Buscar propiedad por codigo
 	public Propiedad buscarPropiedadPorCodigo(String codigo) {
 	    for (Propiedad propiedad : propiedades) {
@@ -274,5 +291,8 @@ public class Inmobiliaria {
 		}
 		
 	}
+
+
+
 	
 }

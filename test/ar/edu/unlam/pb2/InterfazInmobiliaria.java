@@ -27,9 +27,13 @@ public interface InterfazInmobiliaria {
 			System.out.println("11. Promedio de Casas");
 			System.out.println("12. Salir");
 			
-			opcionSeleccionada = teclado.nextInt();
+			System.out.print("Seleccione una opción: ");
+	        opcionSeleccionada = teclado.nextInt();
+	        System.out.println("Opción seleccionada: " + opcionSeleccionada);
+			
 			
 			switch(OpcionDeMenu.values()[opcionSeleccionada]) {
+			
 			case AGREGAR_PROPIEDAD:
 				Integer opcionSeleccionada2 = 0;
 				opcionSeleccionada2 = teclado.nextInt();
@@ -42,52 +46,66 @@ public interface InterfazInmobiliaria {
 					System.out.println("5. Agregar nuevos Terrenos");
 					System.out.println("6. Salir");
 					
-					switch(opcionSeleccionada2) {
-					case 1:
+					System.out.print("Seleccione una opción: ");
+			        opcionSeleccionada2 = teclado.nextInt();
+			        System.out.println("Opción seleccionada: " + opcionSeleccionada2);
+
+					switch(OpcionDeAgregarPropiedades.values()[opcionSeleccionada2])  {
+					case AGREGAR_CASA:
 						agregarCasa();
 						break;
-					case 2:
+					case AGREGAR_DEPARTAMENTO:
 						agregarDepartamento();
 						break;
-					case 3:
+					case AGREGAR_PH:
 						agregarPH();
 						break;
-					case 4:
+					case AGREGAR_CAMPO:
 						agregarCampo();
 						break;
-					case 5:
+					case AGREGAR_TERRENO:
 						agregarTerreno();
 						break;
-					case 6:
+					case SALIR:
 						break;
 					}
 					
 				}while(opcionSeleccionada2!= 6);
-				
-				
 				break;
 			case MODIFICAR_PROPIEDAD:
 				Integer opcionSeleccionada3 = 0;
 				opcionSeleccionada3 = teclado.nextInt();
 				do {
 					System.out.println("Menu de opciones");
-					System.out.println("1. Agregar nuevas casas");
-					System.out.println("2. Agregar nuevos departamentos");
+					System.out.println("1. Modificar datos de casas");
+					System.out.println("2. Modificar datos de departamentos");
+					System.out.println("3. Modificar datos de PHS");
+					System.out.println("4. Modificar datos de Campos");
+					System.out.println("5. Modificar datos de Terrenos");
+					System.out.println("6. Salir");
 					
 					switch(opcionSeleccionada3) {
 					case 1:
 						System.out.println("Ingrese el codigo de la casa a modificar");
 						String codigo = teclado.next();
-						modificarCasa(inmobiliariaActual, codigo);
+						Casa CasaAModificar = inmobiliariaActual.buscarCasaPorCodigo(codigo);
+						modificarCasa(CasaAModificar);
 						break;
 					case 2:
 						System.out.println("Ingrese el codigo del departamento a modificar");
 						String codigo2 = teclado.next();
-						modificarDepartamento(inmobiliariaActual, codigo2);
+						Departamento DepartamentoAModificar = inmobiliariaActual.buscarDepartamentoPorCodigo(codigo2);
+						modificarDepartamento(DepartamentoAModificar);
+						break;
+					case 3:
+						System.out.println("Ingrese el codigo del ph a modificar");
+						String codigo3 = teclado.next();
+						PH PHAModificar = inmobiliariaActual.buscarPHPorCodigo(codigo3);
+						modificarPH(PHAModificar);
 						break;
 					}
 					
-				}while(opcionSeleccionada3!= 3);
+				}while(opcionSeleccionada3!= 6);
 				
 				
 				break;
@@ -146,7 +164,8 @@ public interface InterfazInmobiliaria {
 				break; 
 			case SALIR:
 				break; 
-			
+			default:
+                System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
 			}
 			
 		}while(opcionSeleccionada!=12);
@@ -327,59 +346,130 @@ public static void agregarCampo() {
 
 
 
+public static void modificarCasa(Casa propiedadAModificar) {
+	Scanner teclado = new Scanner(System.in);
+	if (propiedadAModificar != null) {
+        System.out.println("Ingrese nuevo nombre de la calle:");
+        String calle = teclado.next();
+        System.out.println("Ingrese nuevo numero:");
+        Integer numero = teclado.nextInt();
+        System.out.println("Ingrese nuevo nombre de la ciudad:");
+        String localidad = teclado.next();
+        System.out.println("Ingrese precio:");
+        Double precio = teclado.nextDouble();
+        System.out.println("La casa está disponible? (true/false):");
+        boolean estaDisponible = teclado.nextBoolean();
+        teclado.nextLine();
+        System.out.println("Ingrese el nuevo tipo de operación (PERMUTA, VENTA, ALQUILER):");
+        String tipoOperacionString = teclado.nextLine();
+        TipoDeOperacion tipo = TipoDeOperacion.valueOf(tipoOperacionString.toUpperCase());
 
-	
-	public static void modificarCasa(Inmobiliaria inmobiliariaactual, String codigo) {
-		Scanner teclado = new Scanner(System.in);
-		for(Propiedad propiedad : inmobiliariaActual.getPropiedades()) {
-			inmobiliariaActual.buscarPropiedadPorCodigo(codigo);
-			if(propiedad.getCodigo().equals(codigo)) {
-				System.out.println("Ingrese nuevo nombre de la calle");
-				String calle = teclado.next();
-				System.out.println("Ingrese nuevo numero");
-				Integer numero = teclado.nextInt();
-				System.out.println("Ingrese nuevo nombre de la ciudad");
-				String localidad = teclado.next();
-				System.out.println("Ingrese precio");
-				Double precio = teclado.nextDouble();
-				System.out.println("La casa está disponible? (true/false):");
-			    boolean estaDisponible = teclado.nextBoolean();
-			    teclado.nextLine(); 
-			    System.out.println("Ingrese el nuevo tipo de operación (COMPRA, VENTA, ALQUILER):");
-			    String tipoOperacionString = teclado.nextLine();
-			    TipoDeOperacion tipo = TipoDeOperacion.valueOf(tipoOperacionString.toUpperCase());
-			    
-			}
-		}
-	}
+        // Actualizar la propiedad con los nuevos valores
+        propiedadAModificar.setCalle(calle);
+        propiedadAModificar.setNumero(numero);
+        propiedadAModificar.setLocalidad(localidad);
+        propiedadAModificar.setPrecio(precio);
+        propiedadAModificar.setEstaDisponible(estaDisponible);
+        propiedadAModificar.setTipo(tipo);
 
-	
-	public static void modificarDepartamento(Inmobiliaria inmobiliariaactual2, String codigo) {
-		Scanner teclado = new Scanner(System.in);
-		for(Propiedad propiedad : inmobiliariaActual.getPropiedades()) {
-			inmobiliariaActual.buscarPropiedadPorCodigo(codigo);
-			if(propiedad.getCodigo().equals(codigo)) {
-				System.out.println("Ingrese nuevo nombre de la calle");
-				String calle = teclado.next();
-				System.out.println("Ingrese nuevo numero");
-				Integer numero = teclado.nextInt();
-				System.out.println("Ingrese nuevo nombre de la ciudad");
-				String localidad = teclado.next();
-				System.out.println("Ingrese nuevo precio");
-				Double precio = teclado.nextDouble();
-				System.out.println("La casa está disponible? (true/false):");
-			    boolean estaDisponible = teclado.nextBoolean();
-			    teclado.nextLine(); 
-			    System.out.println("Ingrese el nuevo tipo de operación (COMPRA, VENTA, ALQUILER):");
-			    String tipoOperacionString = teclado.nextLine();
-			    TipoDeOperacion tipo = TipoDeOperacion.valueOf(tipoOperacionString.toUpperCase());
-			    System.out.println("Ingrese el nuevo número de departamento:");
-		        String depto = teclado.nextLine();
-			}
-		}
+        System.out.println("La propiedad ha sido modificada exitosamente.");
+    } else {
+        System.out.println("No se encontró ninguna propiedad con el código especificado.");
+    }
 		
 	}
+
+
+
+
+public static void modificarDepartamento(Departamento propiedadAModificar) {
+	Scanner teclado = new Scanner(System.in);
+	if (propiedadAModificar != null) {
+        System.out.println("Ingrese nuevo nombre de la calle:");
+        String calle = teclado.next();
+        System.out.println("Ingrese nuevo numero:");
+        Integer numero = teclado.nextInt();
+        System.out.println("Ingrese nuevo nombre de la ciudad:");
+        String localidad = teclado.next();
+        System.out.println("Ingrese precio:");
+        Double precio = teclado.nextDouble();
+        System.out.println("El departamento está disponible? (true/false):");
+        boolean estaDisponible = teclado.nextBoolean();
+        teclado.nextLine(); 
+        System.out.println("Ingrese el nuevo tipo de operación (PERMUTA, VENTA, ALQUILER):");
+        String tipoOperacionString = teclado.nextLine();
+        TipoDeOperacion tipo = TipoDeOperacion.valueOf(tipoOperacionString.toUpperCase());
+        System.out.println("Ingrese el nuevo número de departamento:");
+        String depto = teclado.nextLine();
+        
+        // Actualizar la propiedad con los nuevos valores
+        propiedadAModificar.setCalle(calle);
+        propiedadAModificar.setNumero(numero);
+        propiedadAModificar.setLocalidad(localidad);
+        propiedadAModificar.setPrecio(precio);
+        propiedadAModificar.setEstaDisponible(estaDisponible);
+        propiedadAModificar.setTipo(tipo);
+        propiedadAModificar.setDepto(depto);
+
+        System.out.println("La propiedad ha sido modificada exitosamente.");
+    } else {
+        System.out.println("No se encontró ninguna propiedad con el código especificado.");
+    }
+		
+		
+	}
+
+
+
+
+public static void modificarPH(PH propiedadAModificar) {
+	Scanner teclado = new Scanner(System.in);
+	if (propiedadAModificar != null) {
+        System.out.println("Ingrese nuevo nombre de la calle:");
+        String calle = teclado.next();
+        System.out.println("Ingrese nuevo numero:");
+        Integer numero = teclado.nextInt();
+        System.out.println("Ingrese nuevo nombre de la ciudad:");
+        String localidad = teclado.next();
+        System.out.println("Ingrese precio:");
+        Double precio = teclado.nextDouble();
+        System.out.println("El ph está disponible? (true/false):");
+        boolean estaDisponible = teclado.nextBoolean();
+        teclado.nextLine(); 
+        System.out.println("Ingrese el nuevo tipo de operación (PERMUTA, VENTA, ALQUILER):");
+        String tipoOperacionString = teclado.nextLine();
+        TipoDeOperacion tipo = TipoDeOperacion.valueOf(tipoOperacionString.toUpperCase());
+        System.out.println("Ingrese el nuevo número de departamento:");
+        String depto = teclado.nextLine();
+        System.out.println("Ingrese el nuevo número de pisos:");
+        Integer cantPisos = teclado.nextInt();
+        
+        // Actualizar la propiedad con los nuevos valores
+        propiedadAModificar.setCalle(calle);
+        propiedadAModificar.setNumero(numero);
+        propiedadAModificar.setLocalidad(localidad);
+        propiedadAModificar.setPrecio(precio);
+        propiedadAModificar.setEstaDisponible(estaDisponible);
+        propiedadAModificar.setTipo(tipo);
+        propiedadAModificar.setDepto(depto);
+        propiedadAModificar.setCantPisos(cantPisos);
+
+        System.out.println("La propiedad ha sido modificada exitosamente.");
+    } else {
+        System.out.println("No se encontró ninguna propiedad con el código especificado.");
+    }
+		
+		
+	}
+
+
+
+
+
+
 	
+
+
 	
 
 	public static void agregarCliente() {
