@@ -179,9 +179,35 @@ public class Inmobiliaria {
 	
 	//Buscar ph por codigo
 	public PH buscarPHPorCodigo(String codigo3) {
-		// TODO Auto-generated method stub
+		for (PH ph : phs) {
+	        if (ph.getCodigo().equals(codigo3)) {
+	            return ph; // Devuelve la casa si se encuentra el código
+	        }
+	    }
 		return null;
 	}
+
+
+	public Campo buscarCampoPorCodigo(String codigo4) {
+		for (Campo campo : campos) {
+	        if (campo.getCodigo().equals(codigo4)) {
+	            return campo; // Devuelve la casa si se encuentra el código
+	        }
+	    }
+		return null;
+	}
+
+
+
+	public Terreno buscarTerrenoPorCodigo(String codigo5) {
+		for (Terreno terreno : terrenos) {
+	        if (terreno.getCodigo().equals(codigo5)) {
+	            return terreno; // Devuelve la casa si se encuentra el código
+	        }
+	    }
+		return null;
+	}
+
 
 	
 	//Buscar propiedad por codigo
@@ -291,7 +317,6 @@ public class Inmobiliaria {
 		}
 		
 	}
-
 
 
 	
