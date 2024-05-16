@@ -37,6 +37,10 @@ public interface InterfazInmobiliaria {
 					System.out.println("Menu de opciones");
 					System.out.println("1. Agregar nuevas casas");
 					System.out.println("2. Agregar nuevos departamentos");
+					System.out.println("3. Agregar nuevos PHS");
+					System.out.println("4. Agregar nuevos Campos");
+					System.out.println("5. Agregar nuevos Terrenos");
+					System.out.println("6. Salir");
 					
 					switch(opcionSeleccionada2) {
 					case 1:
@@ -45,9 +49,20 @@ public interface InterfazInmobiliaria {
 					case 2:
 						agregarDepartamento();
 						break;
+					case 3:
+						agregarPH();
+						break;
+					case 4:
+						agregarCampo();
+						break;
+					case 5:
+						agregarTerreno();
+						break;
+					case 6:
+						break;
 					}
 					
-				}while(opcionSeleccionada2!= 3);
+				}while(opcionSeleccionada2!= 6);
 				
 				
 				break;
@@ -140,7 +155,6 @@ public interface InterfazInmobiliaria {
 	
 
 
-
 public static void agregarCasa() {
 		Scanner teclado = new Scanner(System.in);
 		System.out.println("Ingrese codigo");
@@ -163,6 +177,7 @@ public static void agregarCasa() {
 	    Casa casa = new Casa(codigo, calle, numero, localidad, precio, estaDisponible, tipo);
 	   
 	    inmobiliariaActual.getPropiedades().add(casa);
+	    inmobiliariaActual.getCasas().add(casa);
 		
 	}
 	
@@ -201,10 +216,118 @@ public static void agregarCasa() {
 
         Departamento departamento = new Departamento(codigo, calle, numero, localidad, precio, estaDisponible, tipo, depto);
         inmobiliariaActual.getPropiedades().add(departamento);
-		
+        inmobiliariaActual.getDepartamentos().add(departamento);
 	}
 	
+
+public static void agregarPH() {
+	Scanner teclado = new Scanner(System.in);
+
+    System.out.println("Ingrese el código del departamento:");
+    String codigo = teclado.nextLine();
+
+    System.out.println("Ingrese la calle:");
+    String calle = teclado.nextLine();
+
+    System.out.println("Ingrese el número:");
+    Integer numero = teclado.nextInt();
+    teclado.nextLine(); 
+
+    System.out.println("Ingrese la localidad:");
+    String localidad = teclado.nextLine();
+
+    System.out.println("Ingrese el precio:");
+    Double precio = teclado.nextDouble();
+    teclado.nextLine(); 
+
+    System.out.println("El departamento está disponible? (true/false):");
+    boolean estaDisponible = teclado.nextBoolean();
+    teclado.nextLine(); 
+
+    System.out.println("Ingrese el tipo de operación (COMPRA, VENTA, ALQUILER):");
+    String tipoOperacionString = teclado.nextLine();
+    TipoDeOperacion tipo = TipoDeOperacion.valueOf(tipoOperacionString.toUpperCase());
+
+    System.out.println("Ingrese el número de departamento:");
+    String depto = teclado.nextLine();
+    
+    System.out.println("Ingrese el cantidad de pisos:");
+    Integer cantPisos = teclado.nextInt();
+    teclado.nextLine(); 
+ 
+
+    PH ph = new PH(codigo, calle, numero, localidad, precio, estaDisponible, tipo, depto, cantPisos);
+    inmobiliariaActual.getPropiedades().add(ph);
+    inmobiliariaActual.getPhs().add(ph);
+		
+	}
+
+
+public static void agregarCampo() {
+	Scanner teclado = new Scanner(System.in);
+	System.out.println("Ingrese codigo");
+	String codigo = teclado.next();
+	System.out.println("Ingrese nombre de la calle");
+	String calle = teclado.next();
+	System.out.println("Ingrese numero");
+	Integer numero = teclado.nextInt();
+	System.out.println("Ingrese nombre de la ciudad");
+	String localidad = teclado.next();
+	System.out.println("Ingrese precio");
+	Double precio = teclado.nextDouble();
+	System.out.println("La casa está disponible? (true/false):");
+    boolean estaDisponible = teclado.nextBoolean();
+    teclado.nextLine(); 
+    System.out.println("Ingrese el tipo de operación (COMPRA, VENTA, ALQUILER):");
+    String tipoOperacionString = teclado.nextLine();
+    TipoDeOperacion tipo = TipoDeOperacion.valueOf(tipoOperacionString.toUpperCase());
+    System.out.println("Ingrese numero de hectareas");
+	Integer hectareas = teclado.nextInt();
+
+    Campo campo = new Campo(codigo, calle, numero, localidad, precio, estaDisponible, tipo, hectareas);
+   
+    inmobiliariaActual.getPropiedades().add(campo);
+    inmobiliariaActual.getCampos().add(campo);
+	}
+
+
+
 	
+	public static void agregarTerreno() {
+		Scanner teclado = new Scanner(System.in);
+		System.out.println("Ingrese codigo");
+		String codigo = teclado.next();
+		System.out.println("Ingrese nombre de la calle");
+		String calle = teclado.next();
+		System.out.println("Ingrese numero");
+		Integer numero = teclado.nextInt();
+		System.out.println("Ingrese nombre de la ciudad");
+		String localidad = teclado.next();
+		System.out.println("Ingrese precio");
+		Double precio = teclado.nextDouble();
+		System.out.println("La casa está disponible? (true/false):");
+	    boolean estaDisponible = teclado.nextBoolean();
+	    teclado.nextLine(); 
+	    System.out.println("Ingrese el tipo de operación (COMPRA, VENTA, ALQUILER):");
+	    String tipoOperacionString = teclado.nextLine();
+	    TipoDeOperacion tipo = TipoDeOperacion.valueOf(tipoOperacionString.toUpperCase());
+	    System.out.println("Ingrese los metros cuadrados");
+		Double metros_cuadrados = teclado.nextDouble();
+
+		Terreno terreno = new Terreno(codigo, calle, numero, localidad, precio, estaDisponible, tipo, metros_cuadrados);
+	   
+	    inmobiliariaActual.getPropiedades().add( terreno );
+	    inmobiliariaActual.getTerrenos().add( terreno );
+		
+	}
+
+
+
+
+
+
+
+
 	
 	public static void modificarCasa(Inmobiliaria inmobiliariaactual, String codigo) {
 		Scanner teclado = new Scanner(System.in);
