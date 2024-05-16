@@ -264,5 +264,15 @@ public class Inmobiliaria {
 		}
 		
 	}
+
+	//Alquilar propiedad
+	public void alquilarPropiedad(String codigo2, ArrayList<Propiedad> propiedadesAlquiladas) {
+		for(Propiedad propiedad : propiedades) {
+			if(propiedad.getCodigo() == codigo2) {
+				propiedadesAlquiladas.add(propiedad);
+			}
+		}
+		
+	}
 	
 }
