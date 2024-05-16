@@ -166,7 +166,6 @@ public class Test {
 		
 		ArrayList<Propiedad> propiedadesVenta = inmobiliariaActual.buscarPropiedadesPorOperacion(TipoDeOperacion.VENTA);
         
-       
         // Verificar si la lista devuelta no es nula
         assertNotNull(propiedadesVenta);
 
