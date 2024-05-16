@@ -114,6 +114,10 @@ public interface InterfazInmobiliaria {
 				System.out.println("Las propiedades halladas son:  " + propiedadesEncontradasPorVentaOAlquiler);
 				break;
 			case REALIZAR_VENTA:
+				System.out.println("Ingrese codigo de la propiedad a vender");
+				String codigo = teclado.next();
+				ArrayList<Propiedad> propiedadesVendidas = null;
+				inmobiliariaActual.venderPropiedad(codigo, propiedadesVendidas);
 				break;
 			case REALIZAR_ALQUILER:
 				break;

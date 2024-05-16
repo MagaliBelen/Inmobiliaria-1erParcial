@@ -253,5 +253,16 @@ public class Inmobiliaria {
 		}
 		return propiedadesTemporal;
 	}
+
+
+	//Vender propiedad
+	public void venderPropiedad(String codigo, ArrayList<Propiedad> propiedadesVendidas) {
+		for(Propiedad propiedad : propiedades) {
+			if(propiedad.getCodigo() == codigo) {
+				propiedadesVendidas.add(propiedad);
+			}
+		}
+		
+	}
 	
 }
