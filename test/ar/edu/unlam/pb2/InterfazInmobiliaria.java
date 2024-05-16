@@ -123,12 +123,14 @@ public interface InterfazInmobiliaria {
 				System.out.println("Ingrese codigo de la propiedad a alquilar");
 				String codigo2 = teclado.next();
 				ArrayList<Propiedad> propiedadesAlquiladas = null;
-				inmobiliariaActual.venderPropiedad(codigo2, propiedadesAlquiladas);
+				inmobiliariaActual.alquilarPropiedad(codigo2, propiedadesAlquiladas);
 				break;
 			case CALCULAR_EL_PRECIO_PROMEDIO_DE_LAS_CASAS:
+				Double promedio = inmobiliariaActual.calcularValorPromedioDeCasas();
+				System.out.println("el promedio de las casas es: " + promedio);
 				break; 
 			case SALIR:
-				break;
+				break; 
 			
 			}
 			
