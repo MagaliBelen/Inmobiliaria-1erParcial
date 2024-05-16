@@ -111,7 +111,6 @@ public interface InterfazInmobiliaria {
 				System.out.println("Ingrese si busca por venta o alquiler (VENTA o ALQUILER): ");
 		        TipoDeOperacion tipo = TipoDeOperacion.valueOf(teclado.next().toUpperCase());
 		        ArrayList<Propiedad> propiedadesEncontradasPorVentaOAlquiler = inmobiliariaActual.buscarPropiedadesPorVentaOAlquiler(tipo);
-		    
 				System.out.println("Las propiedades halladas son:  " + propiedadesEncontradasPorVentaOAlquiler);
 				break;
 			case REALIZAR_VENTA:
