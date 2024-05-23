@@ -330,7 +330,7 @@ public class Inmobiliaria {
 	//Vender propiedad
 	public void venderPropiedad(String codigo, ArrayList<Propiedad> propiedadesVendidas) {
 		for(Propiedad propiedad : propiedades) {
-			if(propiedad.getCodigo() == codigo) {
+			if(propiedad.getCodigo().equals(codigo)) {
 				propiedadesVendidas.add(propiedad);
 			}
 		}
@@ -340,7 +340,7 @@ public class Inmobiliaria {
 	//Alquilar propiedad
 	public void alquilarPropiedad(String codigo2, ArrayList<Propiedad> propiedadesAlquiladas) {
 		for(Propiedad propiedad : propiedades) {
-			if(propiedad.getCodigo() == codigo2) {
+			if(propiedad.getCodigo().equals(codigo2)) {
 				propiedadesAlquiladas.add(propiedad);
 			}
 		}
