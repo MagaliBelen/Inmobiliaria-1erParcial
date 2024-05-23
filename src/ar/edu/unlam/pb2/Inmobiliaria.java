@@ -135,6 +135,12 @@ public class Inmobiliaria {
 		return terrenos.add(nueva);
 		
 	}
+	
+	//agregar clientes
+	
+	public boolean agregarCliente(Cliente nuevo) {
+		return clientes.add(nuevo);
+	}
 
 	//Calcular valor promedio de Casas
 	public double calcularValorPromedioDeCasas() {

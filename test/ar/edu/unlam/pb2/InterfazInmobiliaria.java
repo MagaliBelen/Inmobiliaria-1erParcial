@@ -573,7 +573,8 @@ public static void modificarTerreno(Terreno propiedadAModificar) {
         String telefono = scanner.nextLine();
 
         Cliente cliente = new Cliente(nombre, apellido, dni, edad, telefono);
-		inmobiliariaActual.getClientes().add(cliente);
+	
+		inmobiliariaActual.agregarCliente(cliente);
 		}
 
 
