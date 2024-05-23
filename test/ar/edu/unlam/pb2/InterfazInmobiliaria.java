@@ -208,8 +208,8 @@ public static void agregarCasa() {
 
 	    Casa casa = new Casa(codigo, calle, numero, localidad, precio, estaDisponible, tipo);
 	   
-	    inmobiliariaActual.getPropiedades().add(casa);
-	    inmobiliariaActual.getCasas().add(casa);
+	    inmobiliariaActual.agregarPropiedad(casa);
+	    
 		
 	}
 	
@@ -247,8 +247,7 @@ public static void agregarCasa() {
      
 
         Departamento departamento = new Departamento(codigo, calle, numero, localidad, precio, estaDisponible, tipo, depto);
-        inmobiliariaActual.getPropiedades().add(departamento);
-        inmobiliariaActual.getDepartamentos().add(departamento);
+        inmobiliariaActual.agregarPropiedad(departamento);
 	}
 	
 
@@ -289,8 +288,7 @@ public static void agregarPH() {
  
 
     PH ph = new PH(codigo, calle, numero, localidad, precio, estaDisponible, tipo, depto, cantPisos);
-    inmobiliariaActual.getPropiedades().add(ph);
-    inmobiliariaActual.getPhs().add(ph);
+    inmobiliariaActual.agregarPropiedad(ph);
 		
 	}
 
@@ -318,8 +316,7 @@ public static void agregarCampo() {
 
     Campo campo = new Campo(codigo, calle, numero, localidad, precio, estaDisponible, tipo, hectareas);
    
-    inmobiliariaActual.getPropiedades().add(campo);
-    inmobiliariaActual.getCampos().add(campo);
+    inmobiliariaActual.agregarPropiedad(campo);
 	}
 
 
@@ -348,8 +345,7 @@ public static void agregarCampo() {
 
 		Terreno terreno = new Terreno(codigo, calle, numero, localidad, precio, estaDisponible, tipo, metros_cuadrados);
 	   
-	    inmobiliariaActual.getPropiedades().add( terreno );
-	    inmobiliariaActual.getTerrenos().add( terreno );
+		   inmobiliariaActual.agregarPropiedad(terreno);
 		
 	}
 

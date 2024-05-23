@@ -111,7 +111,30 @@ public class Inmobiliaria {
 		
 	}
 	
+	public boolean agregarPropiedad(Casa nueva) {
+		return casas.add(nueva);
+		
+	}
 	
+	public boolean agregarPropiedad(Departamento nueva) {
+		return departamentos.add(nueva);
+		
+	}
+	
+	public boolean agregarPropiedad(Campo nueva) {
+		return campos.add(nueva);
+		
+	}
+	
+	public boolean agregarPropiedad(PH nueva) {
+		return phs.add(nueva);
+		
+	}
+	
+	public boolean agregarPropiedad(Terreno nueva) {
+		return terrenos.add(nueva);
+		
+	}
 
 	//Calcular valor promedio de Casas
 	public double calcularValorPromedioDeCasas() {
